@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "txt-to-sql-converter (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "txt-to-sql-converter (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
