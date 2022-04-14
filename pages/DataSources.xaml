@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="TXTToSQL.pages.DataSources"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TXTToSQL.pages"
+    xmlns:local2="using:TXTToSQL"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid ColumnSpacing="30" Padding="40" Margin="0,20,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Orientation="Vertical" Spacing="20">
+            
+            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Groups"/>
+
+            <CommandBar>
+                <AppBarButton Name="dsAddGroupButton" Content="Add group" Icon="Add" Click="dsAddGroupButton_Click"/>
+                <AppBarButton Name="dsDeleteGroupButton" Content="Delete group" Icon="Delete" Click="dsDeleteGroupButton_Click"/>
+                <AppBarButton Name="dsEditGroupButton" Content="Edit group" Icon="Edit" Click="dsEditGroupButton_Click" />
+            </CommandBar>
+
+            <ListView Name="dsListViewGroups" ItemsSource="{x:Bind groups}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local2:ExperimentalGroup">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Ellipse Fill="{x:Bind brush}" Width="30" Height="30" Grid.Column="0"/>
+                            
+                            <StackPanel Padding="15,10,10,10" Orientation="Vertical" Grid.Column="1">
+                                <TextBlock Text="{x:Bind fullName}" Style="{ThemeResource BaseTextBlockStyle}"/>
+                                <TextBlock Text="{x:Bind description}" Style="{ThemeResource CaptionTextBlockStyle}"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Source files"/>
+        </StackPanel>
+    </Grid>
+</Page>

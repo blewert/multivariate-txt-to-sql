@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="TXTToSQL.pages.dialogs.AddGroupDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TXTToSQL.pages.dialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid ColumnSpacing="30" RowSpacing="30" MinWidth="400">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Spacing="30">
+            <TextBox Name="agdGroupName" Header="Name" PlaceholderText="Group A" TextChanged="agdGroupName_TextChanged"/>
+            <TextBox Name="agdDescription" Header="Description" IsSpellCheckEnabled="True" TextWrapping="Wrap" Height="150" AcceptsReturn="True" TextChanged="agdDescription_TextChanged"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Spacing="30">
+            <TextBox Name="agdAbbreviation" Header="Abbreviation" PlaceholderText="A"  MaxLength="4" CharacterCasing="Upper" TextChanged="TextBox_TextChanged" />
+            <SplitButton Name="agdSplitButton">
+                <Border Name="agdCurrentColor" Width="32" Height="32" Background="Green" CornerRadius="4,4,4,4"/>
+                <SplitButton.Flyout>
+                    <Flyout Placement="Bottom">
+                        <ColorPicker Name="agdColorPicker" ColorChanged="agdColorPicker_ColorChanged"/>
+                    </Flyout>
+                </SplitButton.Flyout>
+            </SplitButton>
+        </StackPanel>
+        
+    </Grid>
+</Page>

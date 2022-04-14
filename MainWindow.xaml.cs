@@ -23,14 +23,38 @@ namespace txt_to_sql_converter
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private Dictionary<string, Type> pagesMap = new Dictionary<string, Type>();
+
         public MainWindow()
         {
             this.InitializeComponent();
+            this.InitializeDictionary();
+
+            nvMainContentFrame.Navigate(pagesMap["data-sources"]);
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private void InitializeDictionary()
         {
-            myButton.Content = "Clicked";
+            pagesMap["data-sources"] = typeof(TXTToSQL.pages.DataSources);
+            pagesMap["data-model"]   = typeof(TXTToSQL.pages.DataModel);
+            pagesMap["actions"]      = typeof(TXTToSQL.pages.Actions);
+            pagesMap["settings"]     = typeof(TXTToSQL.pages.Settings);
+        }
+
+        private void nvMainNavigation_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            var item = args.InvokedItemContainer as NavigationViewItem;
+
+            if (args.IsSettingsInvoked)
+            {
+                nvMainContentFrame.Navigate(pagesMap["settings"]);
+                return;
+            }
+
+            if (item == null)
+                return;
+
+            nvMainContentFrame.Navigate(pagesMap[item.Tag as string]);
         }
     }
 }
